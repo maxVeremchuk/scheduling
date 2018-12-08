@@ -8,7 +8,6 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class SchedulingAlgorithm {
-
     public static Results RunSJF(int runtime, Vector<sProcess> processVector, Vector<sProcess> notArrived, Results result) {
         int i;
         int comptime = 0;
