@@ -1,10 +1,7 @@
 Scheduling Type: null
 Scheduling Name: null
-Simulation Run Time: 11995
+Simulation Run Time: 1500
 Mean: 1000
 Standard Deviation: 600
 Process #	CPU Time	IO Blocking	CPU Completed	CPU Blocked		Arrival time
-0			495 (ms)		100 (ms)		495 (ms)		4 times		0
-1			1338 (ms)		500 (ms)		1338 (ms)		7 times		0
-3			1144 (ms)		40 (ms)			1144 (ms)		29 times		160
-2			1338 (ms)		30 (ms)			1338 (ms)		45 times		30
+1			930 (ms)		500 (ms)		930 (ms)		2 times		0

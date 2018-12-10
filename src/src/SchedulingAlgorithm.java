@@ -1,6 +1,4 @@
-// Run() is called from Scheduling.main() and is where
-// the scheduling algorithm written by the user resides.
-// User modification should occur within the Run() function.
+
 
 import java.util.Vector;
 import java.io.*;
@@ -8,12 +6,13 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class SchedulingAlgorithm {
+
     public static Results RunSJF(int runtime, Vector<sProcess> processVector, Vector<sProcess> notArrived, Results result) {
-        int i;
+        int i = 0;
         int comptime = 0;
         sProcess previousProcess;
         sProcess currentProcess;
-        int size;
+        int size = 0;
         int processSize = processVector.size() + notArrived.size();
         int completed = 0;
         boolean isAdded = false;
@@ -23,10 +22,10 @@ public class SchedulingAlgorithm {
         String resultsFile = "Summary-Processes";
 
         //debug:
-        //processVector.elementAt(0).cputime = 30;
-        //processVector.elementAt(1).cputime = 930;
-        //notArrived.elementAt(0).cputime = 30;
-        //notArrived.elementAt(1).cputime = 850;
+        processVector.elementAt(0).cputime = 700;
+        processVector.elementAt(1).cputime = 930;
+        notArrived.elementAt(0).cputime = 850;
+        notArrived.elementAt(1).cputime = 850;
 
         try {
             PrintStream out = new PrintStream(new FileOutputStream(resultsFile));
@@ -64,7 +63,7 @@ public class SchedulingAlgorithm {
                         }
                     }
                     if(allBlocked){
-                            out.println("Process: " + currentProcess.id + " starts from all blocking(" + currentProcess.cputime + " " + currentProcess.ioblocking + " " + currentProcess.cpudone + " " + currentProcess.arrivalTime + ")");
+                        out.println("Process: " + currentProcess.id + " starts from all blocking(" + currentProcess.cputime + " " + currentProcess.ioblocking + " " + currentProcess.cpudone + " " + currentProcess.arrivalTime + ")");
                         allBlocked = false;
                     }
                     else{
@@ -98,7 +97,7 @@ public class SchedulingAlgorithm {
                     if (completed == processSize) {
                         result.compuTime = comptime;
                         out.close();
-                       result.processes = bufferProcesses;
+                        result.processes = bufferProcesses;
                         return result;
                     }
 
@@ -144,6 +143,19 @@ public class SchedulingAlgorithm {
                     }
                 }
                 comptime++;
+            }
+            if(processVector.size() > 0){
+                for(i = 0; i < processVector.size(); i++){
+                    sProcess proc = processVector.elementAt(i);
+                    if(proc.blockedTime == -1) {
+                        out.println("Process: " + proc.id + " not blocked... (" + proc.cputime + " " + proc.ioblocking +
+                                " " + proc.cpudone + " " + proc.arrivalTime + ")");
+                    }
+                    else{
+                        out.println("Process: " + proc.id + " blocked... (" + proc.cputime + " " + proc.ioblocking +
+                                " " + proc.cpudone + " " + proc.arrivalTime + ")");
+                    }
+                }
             }
             out.close();
         } catch (IOException e) { /* Handle exceptions */ }
